@@ -1,2 +1,2 @@
-# Windy NS
-An Python Name-Server struct & API.
+# Windy NS Updater
+An Python Name-Server Recorder struct & API.
