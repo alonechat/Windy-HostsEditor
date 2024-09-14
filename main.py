@@ -2,6 +2,9 @@ import os
 import platform
 import argparse
 
+global GLOBAL_CONFIG_OUTPUT_FILE
+GLOBAL_CONFIG_OUTPUT_FILE = None
+
 # 获取操作系统类型
 def get_os_type():
     os_type = platform.system()
@@ -17,9 +20,11 @@ def get_hosts_file_path():
     else:
         raise Exception(f"Unsupported OS: {os_type}")
 
+GLOBAL_CONFIG_OUTPUT_FILE = get_hosts_file_path()
+
 # 添加或更新hosts文件条目
 def update_hosts_file(domain, ip):
-    hosts_file_path = get_hosts_file_path()
+    hosts_file_path = GLOBAL_CONFIG_OUTPUT_FILE
 
     with open(hosts_file_path, 'r') as file:
         lines = file.readlines()
@@ -59,6 +64,7 @@ if __name__ == "__main__":
     parser.add_argument('--domain', type=str, help="Domain name to add or update in hosts file")
     parser.add_argument('--ip', type=str, help="IP address for the domain")
     parser.add_argument('--file', type=str, help="File containing domain/IP pairs")
+	parser.add_argument('--output', type=str, help="Output file")
 
     args = parser.parse_args()
 
@@ -71,6 +77,8 @@ if __name__ == "__main__":
         pass
 
     try:
+		if args.output:
+			GLOBAL_CONFIG_OUTPUT_FILE = args.o
         if args.file:
             update_hosts_from_file(args.file)
         elif args.domain and args.ip:
