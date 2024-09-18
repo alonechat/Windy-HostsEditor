@@ -7,7 +7,7 @@ def api():
     data = request.get_json()
     # DB ops is hidden...
     response = {
-        'message': 'Hello, this is a simple Python API server!',
+        'message': '200 OK' if True else '403 Forbidden',
         'received_data': data
     }
     return jsonify(response)
