@@ -77,8 +77,8 @@ if __name__ == "__main__":
         pass
 
     try:
-		if args.output:
-			GLOBAL_CONFIG_OUTPUT_FILE = args.o
+	if args.output:
+            GLOBAL_CONFIG_OUTPUT_FILE = args.output
         if args.file:
             update_hosts_from_file(args.file)
         elif args.domain and args.ip:
