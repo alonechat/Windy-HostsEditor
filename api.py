@@ -8,8 +8,14 @@ def api():
     data = request.get_json()
     try:
         if requests['names'] is not None:
-        
-            main.
+            ips = requests['names']['pairs']:
+            
+            for keys in list(ips.keys()):
+                
+                main.update_hosts_file(
+                    str(list(keys)), 
+                    str(ips[keys])
+                )
     except IndexError:
         pass
     return jsonify(response)
